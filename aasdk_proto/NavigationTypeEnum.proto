@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package aasdk.proto.enums;
+message NavigationType {
+    enum Enum
+    {
+        NAVIGATION_IMAGES = 1;
+        NAVIGATION_CODES = 2;
+    }
+}

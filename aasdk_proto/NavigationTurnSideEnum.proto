@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package aasdk.proto.enums;
+message NavigationTurnSide {
+    enum Enum
+    {
+        TURN_LEFT = 1;
+        TURN_RIGHT = 2;
+        TURN_UNSPECIFIED = 3;
+    }
+}

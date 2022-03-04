@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package aasdk.proto.enums;
+message NavigationDistanceUnit {
+    enum Enum
+    {
+        METERS = 1;       // meters * 1000, used when rounded distance < 1000m
+        KILOMETERS10 = 2; // kilometers * 1000, used when rounded distance > 10km, not same as just meters because "km" is displayed on screen
+        KILOMETERS = 3;   // kilometers * 1000, used when rounded distance between 1km and 10km, not same as just meters because "km" is displayed on screen
+        MILES10 = 4;      // miles * 1000, used when rounded distance > 10mi
+        MILES = 5;        // miles * 1000, used when rounded distance between 1mi and 10mi
+        FEET = 6;         // feet * 1000
+        YARDS = 7;        // yards * unknown *UNTESTED*
+    }
+}

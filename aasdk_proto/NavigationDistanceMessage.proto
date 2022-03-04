@@ -1,0 +1,14 @@
+syntax="proto2";
+
+import "NavigationDistanceUnitEnum.proto";
+
+package aasdk.proto.messages;
+
+//32773   (0x8005)
+message NavigationDistanceMessage
+{
+    optional int32 distance = 1; //meters
+    optional int32 time_until = 2; //seconds
+    optional uint64 display_distance = 3; //distance rounded for display
+    optional enums.NavigationDistanceUnit.Enum display_distance_unit = 4;
+}

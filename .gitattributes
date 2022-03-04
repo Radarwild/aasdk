@@ -1,0 +1,6 @@
+*.proto         text
+*.cpp           text
+*.hpp           text
+*.txt           text
+*.md            text
+*.cmake         text

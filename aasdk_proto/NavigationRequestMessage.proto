@@ -1,0 +1,10 @@
+syntax="proto2";
+
+import "NavigationRequestStateEnum.proto";
+
+package aasdk.proto.messages;
+
+message NavigationRequestMessage
+{
+    optional enums.NavigationRequestState.Enum status = 1;
+}

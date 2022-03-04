@@ -1,0 +1,16 @@
+syntax="proto2";
+
+import "NavigationTurnSideEnum.proto";
+import "NavigationTurnEventEnum.proto";
+
+package aasdk.proto.messages;
+
+message NavigationTurnMessage
+{
+    optional string event_name = 1;
+    optional enums.NavigationTurnSide.Enum turn_side = 2;
+    optional enums.NavigationTurnEvent.Enum turn_event = 3;
+    optional bytes image = 4; // image in png format
+    optional int32 turn_number = 5;
+    optional int32 turn_angle = 6;
+}
