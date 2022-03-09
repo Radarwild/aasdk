@@ -171,14 +171,15 @@ size_t Cryptor::decrypt(common::Data& output, const common::DataConstBuffer& buf
     //output.resize(beginOffset + 1);
 
     //size_t availableBytes = 1;
-	size_t availableBytes = length;
+    size_t availableBytes = length;
     size_t totalReadSize = 0;
     size_t readBytes = (length - totalReadSize) > 2048 ? 2048 : length - totalReadSize;                     // Calculate How many Bytes to Read
     output.resize(output.size() + readBytes);                                                               // Resize Output to match the bytes we want to read
 
     // We try to be a bit more explicit here, using the frame length from the frame itself rather than just blindly reading from the SSL buffer.
 	
-    while(readBytes > 0)
+    //while(readBytes > 0) //was
+    while(readBytes > 0 || availableBytes > 0)
     {
         const auto& currentBuffer = common::DataBuffer(output, totalReadSize + beginOffset);
         auto readSize = sslWrapper_->sslRead(ssl_, currentBuffer.data, currentBuffer.size);
