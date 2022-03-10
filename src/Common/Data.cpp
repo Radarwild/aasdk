@@ -114,7 +114,7 @@ std::string dump(const Data& data)
     std::string buffer;
     boost::algorithm::hex(data, back_inserter(buffer));
     return buffer;
-    return dump(DataConstBuffer(data));
+    //return dump(DataConstBuffer(data));
 }
 
 /*std::string uint8_to_hex_string(const uint8_t *v, const size_t s) {
