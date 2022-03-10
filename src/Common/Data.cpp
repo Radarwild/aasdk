@@ -1,21 +1,3 @@
-/*
-*  This file is part of aasdk library project.
-*  Copyright (C) 2018 f1x.studio (Michal Szwaj)
-*
-*  aasdk is free software: you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 3 of the License, or
-*  (at your option) any later version.
-
-*  aasdk is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*  along with aasdk. If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #include <boost/algorithm/hex.hpp>
 #include <aasdk/Common/Data.hpp>
 #include <aasdk/Common/Log.hpp>
@@ -132,10 +114,10 @@ std::string dump(const Data& data)
     std::string buffer;
     boost::algorithm::hex(data, back_inserter(buffer));
     return buffer;
-	return dump(DataConstBuffer(data));
+    return dump(DataConstBuffer(data));
 }
 
-std::string uint8_to_hex_string(const uint8_t *v, const size_t s) {
+/*std::string uint8_to_hex_string(const uint8_t *v, const size_t s) {
   std::stringstream ss;
 
   ss << std::hex << std::setfill('0');
@@ -146,7 +128,7 @@ std::string uint8_to_hex_string(const uint8_t *v, const size_t s) {
   }
 
   return ss.str();
-}
+}*/
 
 std::string dump(const DataConstBuffer& buffer)
 {
@@ -156,7 +138,8 @@ std::string dump(const DataConstBuffer& buffer)
     }
     else
     {
-        std::string hexDump = "[" + uint8_to_hex_string(buffer.cdata, buffer.size) + " ] ";
+	std::string hexDump = "[" + std::to_string(buffer.size) + "] ";
+        //std::string hexDump = "[" + uint8_to_hex_string(buffer.cdata, buffer.size) + " ] ";
         //boost::algorithm::hex(bufferBegin(buffer), bufferEnd(buffer), back_inserter(hexDump));
         return hexDump;
     }
