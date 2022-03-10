@@ -162,7 +162,7 @@ size_t Cryptor::encrypt(common::Data& output, const common::DataConstBuffer& buf
 
 size_t Cryptor::decrypt(common::Data& output, const common::DataConstBuffer& buffer, int frameLength)
 {
-	int overhead = 29;
+    int overhead = 29;
     int length = frameLength - overhead;
     std::lock_guard<decltype(mutex_)> lock(mutex_);
 
@@ -178,8 +178,8 @@ size_t Cryptor::decrypt(common::Data& output, const common::DataConstBuffer& buf
 
     // We try to be a bit more explicit here, using the frame length from the frame itself rather than just blindly reading from the SSL buffer.
 	
-    //while(readBytes > 0) //was
-    while(readBytes > 0 || availableBytes > 0)
+    while(readBytes > 0) //was
+    //while(readBytes > 0 || availableBytes > 0)
     {
         const auto& currentBuffer = common::DataBuffer(output, totalReadSize + beginOffset);
         auto readSize = sslWrapper_->sslRead(ssl_, currentBuffer.data, currentBuffer.size);
