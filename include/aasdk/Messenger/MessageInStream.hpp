@@ -38,9 +38,9 @@ private:
 	
     std::map<messenger::ChannelId, Message::Pointer> messageBuffer_;
 	
-	int frameSize_;
+    int frameSize_;
     bool isValidFrame_;
-	int currentMessageIndex_;
+    //int currentMessageIndex_;
 };
 
 }
