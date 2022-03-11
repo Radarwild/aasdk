@@ -47,7 +47,7 @@ void MessageInStream::receiveFrameHeaderHandler(const common::DataConstBuffer& b
         messageBuffer_[message_->getChannelId()] = message_;
         message_ = nullptr;
     }*/
-	AASDK_LOG(debug) << "[MessageInStream] Processing Frame Header: Ch " << channelIdToString(frameHeader.getChannelId()) << " Fr " << frameTypeToString(frameHeader.getType());
+    AASDK_LOG(debug) << "[MessageInStream] Processing Frame Header: Ch " << channelIdToString(frameHeader.getChannelId()) << " Fr " << frameTypeToString(frameHeader.getType());
 
     isValidFrame_ = true;
 
@@ -65,7 +65,7 @@ void MessageInStream::receiveFrameHeaderHandler(const common::DataConstBuffer& b
         }
         else
         {*/
-		        AASDK_LOG(debug) << "[MessageInStream] Found existing message.";
+        AASDK_LOG(debug) << "[MessageInStream] Found existing message.";
 
         if (frameHeader.getType() == FrameType::FIRST || frameHeader.getType() == FrameType::BULK) {
             // If it's first or bulk, we need to override the message anyhow, so we will start again.
@@ -120,7 +120,7 @@ void MessageInStream::receiveFrameSizeHandler(const common::DataConstBuffer& buf
 
     FrameSize frameSize(buffer);
     //transport_->receive(frameSize.getSize(), std::move(transportPromise));
-	frameSize_ = (int) frameSize.getFrameSize();
+    frameSize_ = (int) frameSize.getFrameSize();
     transport_->receive(frameSize.getFrameSize(), std::move(transportPromise));
 }
 
@@ -131,7 +131,7 @@ void MessageInStream::receiveFramePayloadHandler(const common::DataConstBuffer& 
         try
         {
             //cryptor_->decrypt(message_->getPayload(), buffer);
-		    cryptor_->decrypt(message_->getPayload(), buffer, frameSize_);	
+            cryptor_->decrypt(message_->getPayload(), buffer, frameSize_);	
         }
         catch(const error::Error& e)
         {
