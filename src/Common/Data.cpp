@@ -114,10 +114,10 @@ std::string dump(const Data& data)
     std::string buffer;
     boost::algorithm::hex(data, back_inserter(buffer));
     return buffer;
-    //return dump(DataConstBuffer(data));
+    return dump(DataConstBuffer(data));
 }
 
-/*std::string uint8_to_hex_string(const uint8_t *v, const size_t s) {
+std::string uint8_to_hex_string(const uint8_t *v, const size_t s) {
   std::stringstream ss;
 
   ss << std::hex << std::setfill('0');
@@ -128,7 +128,7 @@ std::string dump(const Data& data)
   }
 
   return ss.str();
-}*/
+}
 
 std::string dump(const DataConstBuffer& buffer)
 {
@@ -139,7 +139,7 @@ std::string dump(const DataConstBuffer& buffer)
     else
     {
 	std::string hexDump = "[" + std::to_string(buffer.size) + "] ";
-        //std::string hexDump = "[" + uint8_to_hex_string(buffer.cdata, buffer.size) + " ] ";
+        std::string hexDump = "[" + uint8_to_hex_string(buffer.cdata, buffer.size) + " ] ";
         //boost::algorithm::hex(bufferBegin(buffer), bufferEnd(buffer), back_inserter(hexDump));
         return hexDump;
     }
