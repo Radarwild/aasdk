@@ -40,7 +40,7 @@ private:
 	
     int frameSize_;
     bool isValidFrame_;
-    //int currentMessageIndex_;
+    int currentMessageIndex_;
 };
 
 }
