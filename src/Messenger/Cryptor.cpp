@@ -192,7 +192,7 @@ size_t Cryptor::decrypt(common::Data& output, const common::DataConstBuffer& buf
         totalReadSize += readSize;
         availableBytes = sslWrapper_->getAvailableBytes(ssl_);
         //output.resize(output.size() + availableBytes);
-		readBytes = (length - totalReadSize) > 2048 ? 2048 : length - totalReadSize;
+	readBytes = (length - totalReadSize) > 2048 ? 2048 : length - totalReadSize;
         output.resize(output.size() + readBytes);
     }
 
