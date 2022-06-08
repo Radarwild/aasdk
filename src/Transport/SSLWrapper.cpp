@@ -15,15 +15,36 @@ SSLWrapper::SSLWrapper()
 {
     SSL_library_init();
     SSL_load_error_strings();
-    ERR_load_BIO_strings();
+    //ERR_load_BIO_strings();
     OpenSSL_add_all_algorithms();
+  ENGINE *e;
+  const char *engine_id = "DEVCRYPTO";
+  ENGINE_load_builtin_engines();
+  e = ENGINE_by_id(engine_id);
+  if (!e)
+    /* the engine isn't available */
+    return;
+  if (!ENGINE_init(e)) {
+    /* the engine couldn't initialise, release 'e' */
+    ENGINE_free(e);
+    return;
+  }
+  if (!ENGINE_set_default_RSA(e)) {
+    /*
+     * This should only happen when 'e' can't initialise, but the previous
+     * statement suggests it did.
+     */
+    abort();
+  }
+  ENGINE_set_default_DSA(e);
+  ENGINE_set_default_ciphers(e);
 }
 
 SSLWrapper::~SSLWrapper()
 {
-    FIPS_mode_set(0);
+    //FIPS_mode_set(0);
     ENGINE_cleanup();
-    CONF_modules_unload(1);
+    //CONF_modules_unload(1);
     EVP_cleanup();
     CRYPTO_cleanup_all_ex_data();
 #if (OPENSSL_VERSION_NUMBER < 0x10100000L)
